@@ -1,12 +1,12 @@
 import React from 'react';
-import { List, Edit,Create, Datagrid, TextField, EditButton, SimpleForm, DisabledInput,DateField,ReferenceInput,TextInput } from 'react-admin';
+import { List, Edit,Create, Datagrid, TextField, EditButton, SimpleForm, DisabledInput,DateTimeInput,ReferenceInput,TextInput,DateField } from 'react-admin';
 
 export const OrderList = props => (
     <List {...props}>
         <Datagrid rowClick="edit">
-            <TextField source="orderId" />
-            <TextField source="createdDate" />
-            <TextField source="createdAt" />
+            <TextField source="orderId" label="Order ID"/>
+            <TextField source="customerName" label="Customer Name" />
+            <DateField source="created" label="Created" locales="fr-FR" />
             <EditButton/>
         </Datagrid>
     </List>
@@ -19,21 +19,19 @@ export const OrderEdit = props => (
             {/* <ReferenceInput source="orderId" reference="orderList">
                 <SelectInput optionText="orderId" />
             </ReferenceInput> */}
-            <TextInput label="Created Date" source="createdDate"/>
-            <TextInput label="Created Time" source="createdAt" />
+            <TextInput label="Customer Name" source="customerName" />
+            <DateTimeInput label="Created Date/Time" source="created" options={{ format: 'YYYY-MM-DD HH:mm:ss'}}/>           
         </SimpleForm>
     </Edit>
 );
 
-// export const OrderCreate = props => (
-//     <Create {...props}>
-//         <SimpleForm>
-//             {/* <ReferenceInput source="userId" reference="users">
-//                 <SelectInput optionText="name" />
-//             </ReferenceInput> */}
-            
-//             <TextInput source="title" />
-//             <LongTextInput source="body" />
-//         </SimpleForm>
-//     </Create>
-// );
+export const OrderCreate = props => (
+    <Create {...props}>
+        <SimpleForm>
+            {/* <ReferenceInput source="userId" reference="users">
+                <SelectInput optionText="name" />
+            </ReferenceInput> */}
+            <TextInput label="Customer Name" source="customerName" />
+        </SimpleForm>
+    </Create>
+);

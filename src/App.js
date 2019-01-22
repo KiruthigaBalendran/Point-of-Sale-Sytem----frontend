@@ -4,7 +4,7 @@ import simpleRestProvider from 'ra-data-simple-rest';
 
 
 //import { PostList, PostEdit, PostCreate } from './posts';
-import { OrderList, OrderEdit } from './orderList';
+import { OrderList, OrderEdit,OrderCreate } from './orderList';
 import authProvider from './authProvider';
 
 
@@ -26,7 +26,7 @@ const dataProvider = simpleRestProvider('http://localhost:8080', httpClient);
 
 const App = () => (
   <Admin title="Order List" dataProvider={dataProvider} authProvider={authProvider}>
-      <Resource name="orderList" list={OrderList} edit={OrderEdit} icon={OrderListIcon}/>
+      <Resource name="orderList" list={OrderList} edit={OrderEdit} create={OrderCreate} icon={OrderListIcon}/>
   </Admin>
 );
 
