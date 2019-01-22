@@ -1,5 +1,6 @@
 import React from 'react';
-import { List, Edit,Create, Datagrid, TextField, EditButton, SimpleForm, DisabledInput,DateTimeInput,ReferenceInput,TextInput,DateField } from 'react-admin';
+import { List, Edit,Create, Datagrid,NumberField, TextField, EditButton, SimpleForm, DisabledInput,DateTimeInput,ReferenceManyField,SingleFieldList,ChipField,SelectInput,TextInput,DateField } from 'react-admin';
+import {MenuList} from './menuList';
 
 export const OrderList = props => (
     <List {...props}>
@@ -15,12 +16,24 @@ export const OrderList = props => (
 export const OrderEdit = props => (
     <Edit {...props}>
         <SimpleForm>
-          <DisabledInput source="orderId" />
-            {/* <ReferenceInput source="orderId" reference="orderList">
-                <SelectInput optionText="orderId" />
-            </ReferenceInput> */}
+            <DisabledInput source="orderId" />
             <TextInput label="Customer Name" source="customerName" />
-            <DateTimeInput label="Created Date/Time" source="created" options={{ format: 'YYYY-MM-DD HH:mm:ss'}}/>           
+            <DateTimeInput label="Created Date/Time" source="created" options={{ format: 'YYYY-MM-DD HH:mm:ss'}}/>   
+            <ReferenceManyField
+                label="Menus"
+                reference="menus"
+                target="orderId"
+                source="orderId"
+                // filter={{ orderId: true }}>
+            >
+                <Datagrid>
+                    <TextField source="itemId" />
+                    <TextField source="itemName" />
+                    <NumberField source="unitPrice" label="Unit Price" options={{ style: 'currency', currency: 'USD' }}/>
+                    <TextField source="quantity" label="Qty" />
+                    <EditButton />
+                </Datagrid>
+            </ReferenceManyField>           
         </SimpleForm>
     </Edit>
 );
@@ -28,9 +41,6 @@ export const OrderEdit = props => (
 export const OrderCreate = props => (
     <Create {...props}>
         <SimpleForm>
-            {/* <ReferenceInput source="userId" reference="users">
-                <SelectInput optionText="name" />
-            </ReferenceInput> */}
             <TextInput label="Customer Name" source="customerName" />
         </SimpleForm>
     </Create>

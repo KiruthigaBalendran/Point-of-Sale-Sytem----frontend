@@ -1,10 +1,11 @@
+// using react-admin template
+
 import React from 'react';
 import { Admin, Resource, fetchUtils} from 'react-admin';
 import simpleRestProvider from 'ra-data-simple-rest';
 
-
-//import { PostList, PostEdit, PostCreate } from './posts';
 import { OrderList, OrderEdit,OrderCreate } from './orderList';
+import {MenuList} from './menuList';
 import authProvider from './authProvider';
 
 
@@ -15,7 +16,7 @@ const httpClient = (url, options = {}) => {
   if (!options.headers) {
       options.headers = new Headers({ Accept: 'application/json' });
   }
-  // add your own headers here
+ 
   options.headers.set('X-Custom-Header', 'foobar');
   options.headers.set('Access-Control-Allow-Origin', '*');
 
@@ -27,6 +28,7 @@ const dataProvider = simpleRestProvider('http://localhost:8080', httpClient);
 const App = () => (
   <Admin title="Order List" dataProvider={dataProvider} authProvider={authProvider}>
       <Resource name="orderList" list={OrderList} edit={OrderEdit} create={OrderCreate} icon={OrderListIcon}/>
+      <Resource name="menus" list={MenuList}/>
   </Admin>
 );
 
