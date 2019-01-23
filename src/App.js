@@ -28,7 +28,7 @@ const dataProvider = simpleRestProvider('http://localhost:8080', httpClient);
 const App = () => (
   <Admin title="Order List" dataProvider={dataProvider} authProvider={authProvider}>
       <Resource name="orderList" list={OrderList} edit={OrderEdit} create={OrderCreate} icon={OrderListIcon}/>
-      <Resource name="menus" list={MenuList}/>
+      <Resource name="menus" />
   </Admin>
 );
 

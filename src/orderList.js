@@ -13,6 +13,7 @@ export const OrderList = props => (
     </List>
 );
 
+
 export const OrderEdit = props => (
     <Edit {...props}>
         <SimpleForm>
@@ -21,10 +22,11 @@ export const OrderEdit = props => (
             <DateTimeInput label="Created Date/Time" source="created" options={{ format: 'YYYY-MM-DD HH:mm:ss'}}/>   
             <ReferenceManyField
                 label="Menus"
-                reference="menus"
+                //reference={`orderList/${props.id}/menus`}
+                reference = "menus"
                 target="orderId"
                 source="orderId"
-                // filter={{ orderId: true }}>
+                //filter={{ orderId: true }}>
             >
                 <Datagrid>
                     <TextField source="itemId" />
