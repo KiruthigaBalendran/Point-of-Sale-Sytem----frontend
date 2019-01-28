@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 class ItemList extends Component {
 
     componentDidMount() {
-       const id = 'ORDER 1'; 
+    //    const {id} = this.props; 
+    //    console.log("id is ",id);
        this.props.getItems(id);
     }
 

@@ -3,7 +3,7 @@ import { Container, Button,Table } from 'reactstrap';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { getOrders, deleteOrder, getItems } from '../actions/orderAction';
-// import {ItemList} from '/ItemList';
+import ItemList from './ItemList';
 import PropTypes from 'prop-types';
 
 class ShoppingList extends Component {
@@ -12,7 +12,8 @@ class ShoppingList extends Component {
         this.props.getOrders();
     }
     onViewClick = (id) => {
-        // <ItemList viewItems={this.props.getItems(id)}/>
+        console.log("id is ",id);
+        // return <ItemList id={id}/>
     }
     onDeleteClick = (id) => {
         this.props.deleteOrder(id);
