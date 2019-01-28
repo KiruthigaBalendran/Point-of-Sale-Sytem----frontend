@@ -4,8 +4,10 @@ import {
     DELETE_ORDER, 
     ORDER_LOADING,
     GET_ITEMS,
+    DELETE_ITEM,
     ITEM_LOADING
 } from '../actions/types';
+
 
 const initialState ={
     orders: [],
@@ -32,7 +34,12 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 orders: state.orders.filter(order => order.id !== action.payload)
-            };
+        };
+        case DELETE_ITEM:
+        return{
+            ...state,
+            items: state.items.filter(items => items.id !== action.payload)
+        };
         case ADD_ORDER:
             return{
                 ...state,

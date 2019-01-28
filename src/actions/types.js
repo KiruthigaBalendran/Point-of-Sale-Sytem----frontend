@@ -4,4 +4,5 @@ export const DELETE_ORDER = 'DELETE_ORDER';
 export const ORDER_LOADING = 'ORDER_LOADING';
 
 export const GET_ITEMS = 'GET_ITEMS';
+export const DELETE_ITEM = 'DELETE_ITEM';
 export const ITEM_LOADING = 'ITEM_LOADING';

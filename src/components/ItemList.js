@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import { Container, Button,Table } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getItems} from '../actions/orderAction';
+import { getItems,deleteItem} from '../actions/orderAction';
 import PropTypes from 'prop-types';
 
 class ItemList extends Component {
 
     componentDidMount() {
-        //console.log("id is ",this.props.id);
-        this.props.viewItems();
+       const id = 'ORDER 1'; 
+       this.props.getItems(id);
     }
-    // onViewClick = (id) => {
-    //     this.props.deleteItem(id);
-    // }
-    // onDeleteClick = (id) => {
-    //     this.props.deleteItem(id);
-    // }
+
+    onDeleteClick = (orderId,itemId) => {
+        this.props.deleteItem(orderId,itemId);
+    }
     
     render() {
-        console.log("items are ",this.props);
         const { items } = this.props;
         return (
             <Container>
@@ -29,15 +26,23 @@ class ItemList extends Component {
                         <th>Item Name</th>
                         <th>Unit Price</th>
                         <th>Quantity</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                        {items.map(({ itemId, itemName,unitPrice, quantity }) => (
+                        {items.map(({ orderId,itemId, itemName,unitPrice, quantity }) => (
                                 <tr>
                                     <td>{itemId}</td>
                                     <td>{itemName}</td>
                                     <td>{unitPrice}</td>
                                     <td>{quantity}</td>
+                                    <td>
+                                    <Button
+                                            className="remove-btn"
+                                            color="danger"
+                                            size="sm"
+                                            onClick={this.onDeleteClick.bind(this,orderId,itemId)}>&times;</Button>
+                                    </td>
                                 </tr>
                         ))}
                 </tbody>
@@ -49,12 +54,12 @@ class ItemList extends Component {
 }
 ItemList.propTypes = {
     getItems: PropTypes.func.isRequired,
-    items: PropTypes.object.isRequired
+    items: PropTypes.array.isRequired
 }
 const mapStateToProps = (state) => ({
-    items: state.items
+    items: state.orders.items
 });
 export default connect(
     mapStateToProps,
-    { getItems}
+    { getItems,deleteItem}
 )(ItemList);

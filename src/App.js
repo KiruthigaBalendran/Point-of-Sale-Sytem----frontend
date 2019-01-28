@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import NavBar from './components/AppNavBar';
 import OrderList from './components/OrderList';
 import OrderModal from './components/OrderModal';
-//import ItemList from './components/ItemList';
+import ItemList from './components/ItemList';
 import {Container} from 'reactstrap';
 
 import {Provider} from 'react-redux';
@@ -21,8 +21,8 @@ class App extends Component {
         <NavBar/>
         <Container>
           <OrderModal/>
-          <OrderList/>
-          {/* <ItemList/> */}
+          {/* <OrderList/> */}
+          <ItemList/>
         </Container>
         
       </div>
