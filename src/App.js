@@ -1,37 +1,34 @@
-// using react-admin template
+import React, { Component } from 'react';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'semantic-ui-css/semantic.min.css';
+import NavBar from './components/AppNavBar';
+import OrderList from './components/OrderList';
+import OrderModal from './components/OrderModal';
+//import ItemList from './components/ItemList';
+import {Container} from 'reactstrap';
 
-import React from 'react';
-import { Admin, Resource, fetchUtils} from 'react-admin';
-import simpleRestProvider from 'ra-data-simple-rest';
-
-import { OrderList, OrderEdit,OrderCreate } from './orderList';
-import {MenuList} from './menuList';
-import authProvider from './authProvider';
+import {Provider} from 'react-redux';
+import store from './Store';
 
 
-import OrderListIcon from '@material-ui/icons/EventNote';
+class App extends Component {
 
-
-const httpClient = (url, options = {}) => {
-  if (!options.headers) {
-      options.headers = new Headers({ Accept: 'application/json' });
+  render() {
+    return (
+      <Provider store={store}>
+      <div className="App">
+        <NavBar/>
+        <Container>
+          <OrderModal/>
+          <OrderList/>
+          {/* <ItemList/> */}
+        </Container>
+        
+      </div>
+      </Provider>
+    );
   }
- 
-  options.headers.set('X-Custom-Header', 'foobar');
-  options.headers.set('Access-Control-Allow-Origin', '*');
-
-  return fetchUtils.fetchJson(url, options);
 }
-const dataProvider = simpleRestProvider('http://localhost:8080', httpClient);
-
-
-const App = () => (
-  <Admin title="Order List" dataProvider={dataProvider} authProvider={authProvider}>
-      <Resource name="orderList" list={OrderList} edit={OrderEdit} create={OrderCreate} icon={OrderListIcon}/>
-      <Resource name="menus" />
-  </Admin>
-);
-
-
 
 export default App;
